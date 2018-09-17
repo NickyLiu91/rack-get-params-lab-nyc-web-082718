@@ -26,7 +26,7 @@ class Application
       requested_item = req.params["item"]
       if @@items.include?(requested_item)
         @@cart << requested_item
-        resp.write "added #{requested_item}"
+        return "added #{requested_item}"
       else
         return "That item could not be found."
       end
@@ -35,6 +35,14 @@ class Application
     end
 
     resp.finish
+  end
+
+  def handle_search(search_term)
+    if @@items.include?(search_term)
+      return "#{search_term} is one of our items"
+    else
+      return "Couldn't find #{search_term}"
+    end
   end
 
   def handle_search(search_term)

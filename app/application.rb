@@ -23,9 +23,9 @@ class Application
         end
       end
     elsif req.path.match(/add/)
-      item = req.params["item"]
-      if @@items.include?(item)
-        @@cart << item
+      requested_item = req.params["item"]
+      if @@items.include?(requested_item)
+        @@cart << requested_item
       else
         return "That item could not be found."
       end
